@@ -1,4 +1,72 @@
 body {
-  background-color: cornflowerblue;
+  background-image: linear-gradient(
+    #000912,
+    #002c4f,
+    #3a627a,
+    #006883,
+    #004461
+  );
+}
+
+.container {
+  max-width: 600px;
+  background-image: url("o099_bowd_210322.jpg");
+  background-size: cover;
+  margin: 30px auto;
+  padding: 20px;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.7);
+}
+
+.world-clock {
   text-align: center;
+  background-color: black;
+  opacity: 0.5;
+  padding: 5px;
+}
+
+#city-selector {
+  width: 100%;
+  padding: 5px;
+  font-size: 17px;
+  background-color: #3d2f2c;
+  color: white;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.cities {
+  background-color: black;
+  opacity: 0.6;
+  padding: 1px 15px;
+  padding-bottom: 20px;
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px dashed white;
+}
+
+.time {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.time small {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+a {
+  color: #fe8f05;
 }
