@@ -1,30 +1,57 @@
 function updateTime() {
   let harareDateElement = document.querySelector("#harare .date");
-  harareDateElement.innerHTML = moment()
-    .tz("Africa/Harare")
-    .format("dddd, DD MMMM, YYYY");
-  let harareTimeElement = document.querySelector("#harare .time");
-  harareTimeElement.innerHTML = moment()
-    .tz("Africa/Harare")
-    .format("hh:mm:ss [<small>]A[</small>]");
+  if (harareDateElement) {
+    harareDateElement.innerHTML = moment()
+      .tz("Africa/Harare")
+      .format("dddd, DD MMMM, YYYY");
+    let harareTimeElement = document.querySelector("#harare .time");
+    harareTimeElement.innerHTML = moment()
+      .tz("Africa/Harare")
+      .format("HH:mm:ss [<small>]A[</small>]");
+  }
 
-  let berlinDateElement = document.querySelector("#berlin .date");
-  berlinDateElement.innerHTML = moment()
-    .tz("Europe/Berlin")
-    .format("dddd, DD MMMM, YYYY");
-  let berlinTimeElement = document.querySelector("#berlin .time");
-  berlinTimeElement.innerHTML = moment()
-    .tz("Europe/Berlin")
-    .format("hh:mm:ss [<small>]A[</small>]");
+  let fijiDateElement = document.querySelector("#fiji .date");
+  if (fijiDateElement) {
+    fijiDateElement.innerHTML = moment()
+      .tz("Pacific/Fiji")
+      .format("dddd, DD MMMM, YYYY");
+    let fijiTimeElement = document.querySelector("#fiji .time");
+    fijiTimeElement.innerHTML = moment()
+      .tz("Pacific/Fiji")
+      .format("HH:mm:ss [<small>]A[</small>]");
+  }
 
   let newyorkDateElement = document.querySelector("#new-york .date");
-  newyorkDateElement.innerHTML = moment()
-    .tz("America/New_York")
-    .format("dddd, DD MMMM, YYYY");
-  let newyorkTimeElement = document.querySelector("#new-york .time");
-  newyorkTimeElement.innerHTML = moment()
-    .tz("America/New_York")
-    .format("hh:mm:ss [<small>]A[</small>]");
+  if (newyorkDateElement) {
+    newyorkDateElement.innerHTML = moment()
+      .tz("America/New_York")
+      .format("dddd, DD MMMM, YYYY");
+    let newyorkTimeElement = document.querySelector("#new-york .time");
+    newyorkTimeElement.innerHTML = moment()
+      .tz("America/New_York")
+      .format("HH:mm:ss [<small>]A[</small>]");
+  }
 }
 updateTime();
 setInterval(updateTime, 1000);
+
+function showCityInfo(event) {
+  let citySelectorValue = event.target.value;
+  let citySelectorValueDate = moment()
+    .tz(citySelectorValue)
+    .format("dddd, DD MMMM, YYYY");
+  let citySelectorValueTime = moment()
+    .tz(citySelectorValue)
+    .format("HH:mm:ss [<small>]A[</small>]");
+  let citiesElement = document.querySelector("#cities");
+  citiesElement.innerHTML = `<div class="city">
+          <div class="info">
+            <h2>${citySelectorValue.replace("_", " ").split("/")[1]}</h2>
+            <div class="date">${citySelectorValueDate}</div>
+          </div>
+          <div class="time">${citySelectorValueTime}</div>
+        </div>`;
+}
+
+let citySelector = document.querySelector("#city-selector");
+citySelector.addEventListener("change", showCityInfo);
