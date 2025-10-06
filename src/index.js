@@ -36,26 +36,30 @@ updateTime();
 setInterval(updateTime, 1000);
 
 function showCityInfo(event) {
-  let citySelectorValue = event.target.value;
-
-  if (citySelectorValue === "current") {
-    citySelectorValue = moment.tz.guess();
-  }
-  let citySelectorValueDate = moment()
-    .tz(citySelectorValue)
-    .format("dddd, DD MMMM, YYYY");
-  let citySelectorValueTime = moment()
-    .tz(citySelectorValue)
-    .format("HH:mm:ss [<small>]A[</small>]");
-  let citiesElement = document.querySelector("#cities");
-  citiesElement.innerHTML = `<div class="city">
+  let citySelectorValue = cityselector.value;
+  if (citySelectorValue) {
+    if (citySelectorValue === "current") {
+      citySelectorValue = moment.tz.guess();
+    }
+    let citySelectorValueDate = moment()
+      .tz(citySelectorValue)
+      .format("dddd, DD MMMM, YYYY");
+    let citySelectorValueTime = moment()
+      .tz(citySelectorValue)
+      .format("HH:mm:ss [<small>]A[</small>]");
+    let citiesElement = document.querySelector("#cities");
+    citiesElement.innerHTML = `<div class="city">
           <div class="info">
             <h2>${citySelectorValue.replace("_", " ").split("/")[1]}</h2>
             <div class="date">${citySelectorValueDate}</div>
           </div>
           <div class="time">${citySelectorValueTime}</div>
-        </div>`;
-}
+        </div>
+        <br/>
+        <a href="index.html">All cities</a>`;
+  }
 
-let citySelector = document.querySelector("#city-selector");
-citySelector.addEventListener("change", showCityInfo);
+  let citySelector = document.querySelector("#cityselector");
+  citySelector.addEventListener("change", showCityInfo);
+}
+setInterval(showCityInfo, 1000);
