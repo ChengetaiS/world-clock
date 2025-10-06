@@ -37,6 +37,10 @@ setInterval(updateTime, 1000);
 
 function showCityInfo(event) {
   let citySelectorValue = event.target.value;
+
+  if (citySelectorValue === "current") {
+    citySelectorValue = moment.tz.guess();
+  }
   let citySelectorValueDate = moment()
     .tz(citySelectorValue)
     .format("dddd, DD MMMM, YYYY");
